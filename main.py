@@ -46,7 +46,7 @@ def get_max_point(reward_list):
     print("max reward points--->{}".format(max_point))
     return max_point
 
-#send msg to telegram
+#send alarm msg via email
 def send_email():
     pass
 
