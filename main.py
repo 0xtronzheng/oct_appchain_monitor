@@ -3,7 +3,7 @@ from substrateinterface import SubstrateInterface
 
 MY_SS58_ADDR = "5FNQXuVvhhLAbWBw56xD1CdrvwUiEFsgj3yCwvnK7zD9PH4o"
 RPC_ENDPOINT = "wss://gateway.mainnet.octopus.network/fusotao/0efwa9v0crdx4dg3uj8jdmc5y7dj4ir2"
-
+DIFF_COUNT = 50 #
 client = SubstrateInterface(url=RPC_ENDPOINT)
 
 def get_blockchain_info():
@@ -56,7 +56,7 @@ def alarm(self_point,max_point):
     str_self_point = '{}'.format(self_point)
     str_max_point = '{}'.format(max_point)
     diff = int(str_max_point) - int(str_self_point)
-    if diff > 50:
+    if diff > DIFF_COUNT:
         print("My Node is Exception,Please Check")
         send_email()
     else:
