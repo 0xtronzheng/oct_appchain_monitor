@@ -25,7 +25,7 @@ def get_blockchain_info():
         return reward_list
     except Exception as e:
         print("get blockchain info error {}".format(e))
-        return []
+        return reward_list
 
 def get_self_point(reward_list):
     self_point = 0
