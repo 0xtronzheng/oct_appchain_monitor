@@ -8,7 +8,7 @@ python 3.9
 
 ## 2. clone code
 ```
-git clone git@github.com:0xtronzheng/oct_appchain_monitor.git
+git clone https://github.com/0xtronzheng/oct_appchain_monitor.git
 ```
 ## install depend
 ```
