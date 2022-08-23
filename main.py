@@ -4,6 +4,7 @@ from sms import send_sms as send_notify
 
 MY_SS58_ADDR = os.getenv("MY_SS58_ADDR")
 RPC_ENDPOINT = os.getenv("RPC_ENDPOINT")
+APPCHAIN_NAME = RPC_ENDPOINT.split('/')[3]
 DIFF_COUNT = 50 #
 PHONE_NUMBER = 15159665573
 
@@ -56,7 +57,7 @@ def alarm(self_point,max_point):
     diff = int(str_max_point) - int(str_self_point)
     if diff > DIFF_COUNT:
         print("My Node is Exception,Please Check")
-        msg = "My Node is Exception,Please Check\n My point-->{}\n Max Point-->{}".format(self_point, max_point)
+        msg = "My {} Node is Exception,Please Check\n My point-->{}\n Max Point-->{}".format(APPCHAIN_NAME, self_point, max_point)
         send_notify(PHONE_NUMBER, msg)
     else:
         print("My Node is Normal")
@@ -67,7 +68,7 @@ if __name__ == "__main__":
 
     if len(reward_list) == 0:
         print("get info error")
-        msg = "Get Blockchain Info Error"
+        msg = "Get {} Blockchain Info Error".format(APPCHAIN_NAME)
         send_notify(PHONE_NUMBER, msg)
         sys.exit(0)
     
