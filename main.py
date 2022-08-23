@@ -60,7 +60,7 @@ def alarm(self_point,max_point):
         msg = "My {} Node is Exception,Please Check\n My point-->{}\n Max Point-->{}".format(APPCHAIN_NAME, self_point, max_point)
         send_notify(PHONE_NUMBER, msg)
     else:
-        print("My Node is Normal")
+        print("My {} Node is Normal".format(APPCHAIN_NAME))
 
 if __name__ == "__main__":
     print("start......")
