@@ -1,9 +1,12 @@
-import sys
+import sys, os
 from substrateinterface import SubstrateInterface
+from sms import send_sms as send_notify
 
-MY_SS58_ADDR = "5FNQXuVvhhLAbWBw56xD1CdrvwUiEFsgj3yCwvnK7zD9PH4o"
-RPC_ENDPOINT = "wss://gateway.mainnet.octopus.network/fusotao/0efwa9v0crdx4dg3uj8jdmc5y7dj4ir2"
+MY_SS58_ADDR = os.getenv("MY_SS58_ADDR")
+RPC_ENDPOINT = os.getenv("RPC_ENDPOINT")
 DIFF_COUNT = 50 #
+PHONE_NUMBER = 15159665573
+
 client = SubstrateInterface(url=RPC_ENDPOINT)
 
 def get_blockchain_info():
@@ -46,11 +49,6 @@ def get_max_point(reward_list):
     print("max reward points--->{}".format(max_point))
     return max_point
 
-#send alarm msg via email
-def send_email():
-    pass
-
-
 def alarm(self_point,max_point):
     #alarm
     str_self_point = '{}'.format(self_point)
@@ -58,12 +56,10 @@ def alarm(self_point,max_point):
     diff = int(str_max_point) - int(str_self_point)
     if diff > DIFF_COUNT:
         print("My Node is Exception,Please Check")
-        send_email()
+        msg = "My Node is Exception,Please Check\n My point-->{}\n Max Point-->{}".format(self_point, max_point)
+        send_notify(PHONE_NUMBER, msg)
     else:
         print("My Node is Normal")
-
-
-
 
 if __name__ == "__main__":
     print("start......")
@@ -71,7 +67,8 @@ if __name__ == "__main__":
 
     if len(reward_list) == 0:
         print("get info error")
-        send_email()
+        msg = "Get Blockchain Info Error"
+        send_notify(PHONE_NUMBER, msg)
         sys.exit(0)
     
     self_point = get_self_point(reward_list)
