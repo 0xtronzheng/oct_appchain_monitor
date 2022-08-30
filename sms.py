@@ -19,3 +19,8 @@ def send_sms(phone, msg):
         print("Message sent successfully.")
     else:
         print(f"Message failed with error: {responseData['messages'][0]['error-text']}")
+
+if __name__ = "__main__"
+    phone = 15159665573
+    msg = "deip ec2 is Normal"
+    send_sms(phone, msg)
